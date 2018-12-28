@@ -62,5 +62,7 @@ function register_nav() {
 function load_script($li) {
 	var target = $li.children("a").attr("name");
 	var name = target.substring(target.lastIndexOf("/")+1, target.lastIndexOf(".html"));
+	
+//	if(){};记得写                   11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
 	$.getScript("js/" + name + ".js");
 }

@@ -1,33 +1,52 @@
 //@ sourceURL=user.js
 
 $(function(){
-	console.log("load user");
-	
-	$('[data-toggle="popover"]').popover();
-	
-	/**
-	  $("#chk_all_t").click(function() {
-	  	if ($(":checkbox").prop("checked")){
-		    $("#chk_list_1").prop("checked",true);
-		    $("#chk_list_2").prop("checked",true);
-		    $("#chk_list_3").prop("checked",true);
-		    $("#chk_list_4").prop("checked",true);
-	    }
-	  	else{
-	        $("#chk_list_1").removeAttr("checked");
-	        $("#chk_list_2").removeAttr("checked");
-	        $("#chk_list_3").removeAttr("checked");
-	        $("#chk_list_4").removeAttr("checked");
-	    }
-	  });
-	*/
-	
-	$(".glyphicon-import").click(function(){
-		import_user();
-	});
+	finduserByPage(1);
 	
 });
 
-function import_user() {
-	$("#import_user").trigger("click");
+function finduserByPage(CurrentPage){
+	
+	var userKeyword=$("#userPanel input[type=text]").val();
+	
+	if(userKeyword==""){
+		
+		userKeyword="undefined"
+	}
+	alert(userKeyword)
+	$.ajax({
+		url:"user/finduserByPage/",
+		type:"get",
+		dataType:"json",
+		data:{"CurrentPage":CurrentPage,
+			"userKeyword":userKeyword},
+			success:function(result){
+				if(result.status==1){
+					alert(result.message);}
+				
+				else{
+					
+					alert("查找用户失败，滚去找bug")
+				}
+				
+			},
+			error:function(){
+				
+			
+				
+			}
+			
+			
+			,
+		
+			
+		
+	});
+	
+	
+	
+	return false;
+	
+	
 }
+

@@ -1,9 +1,14 @@
 package com.tarena.entity;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
 
-public class User {
+public class User implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String id;
 	private String loginName;
 	private String loginType;
@@ -94,6 +99,13 @@ public class User {
 	}
 	public String getSex() {
 		return sex;
+	}
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", loginName=" + loginName + ", loginType=" + loginType + ", nickName=" + nickName
+				+ ", password=" + password + ", type=" + type + ", head=" + head + ", score=" + score + ", isLock="
+				+ isLock + ", pwdState=" + pwdState + ", regDate=" + regDate + ", age=" + age + ", sex=" + sex
+				+ ", introduction=" + introduction + ", roles=" + roles + "]";
 	}
 	public void setSex(String sex) {
 		this.sex = sex;

@@ -3,10 +3,9 @@ package com.tarena.vo;
 public class Result {
 	private int status; 
 	private String message;
-	private int data;
+	private Object data;
 	/**
-	 * 1：成功
-	 * 0：失败
+	 * return 1：成功   0：失败
 	 */
 	public int getStatus() {
 		return status;
@@ -20,11 +19,11 @@ public class Result {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	public int getData() {
+	public Object getData() {
 		return data;
 	}
-	public void setData(int data) {
+	public void setData(Object data) {
 		this.data = data;
 	}
-
+	
 }
