@@ -13,4 +13,8 @@ public interface UserMapper {
 
 	public List<User> getUserByPage(Page page);
 
+	//	根据用户的名称查询用户的部分关键信息
+
+	public User findUserByUserName(String username);
+
 }

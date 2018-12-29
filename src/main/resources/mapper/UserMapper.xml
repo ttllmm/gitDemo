@@ -32,7 +32,7 @@
 	
 	
 	
-	<!-- 登录 -->
+	<!--非shiro 登录 -->
 	<select id="login"
 	        parameterType="User"
 	        resultType="string">
@@ -42,6 +42,18 @@
 		where user_loginname=#{loginName} and
 		      user_password=#{password}
 	</select>
+	
+	<!-- shiro登录 -->
+	<select id="findUserByUserName" parameterType="java.lang.Integer" resultType="User">
+	
+	
+	select user_id,user_loginname loginName,user_password password from t_user where user_loginname like #{roleKeyword} or
+		      user_nickname like #{roleKeyword}
+	
+	</select>
+	
+	
+	
 	
 	
 	<!-- 用户的分页+模糊(全部数据) -->

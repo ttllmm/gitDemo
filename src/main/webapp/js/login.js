@@ -36,6 +36,7 @@ $(function(){
 					//服务端正确返回
 					//跳转页面
 					window.location.href="index.html"
+		3784723472378	跳到这里			window.location.href="index.jsp"
 						if(remember=="记住密码"){
 							
 							addCookie("loginName",loginName,1);

@@ -4,7 +4,10 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Service;
 
 import com.tarena.dao.UserMapper;
@@ -37,7 +40,36 @@ public class userServiceimpl implements userService {
 		return result;
 		
 	}
-	
+	public Result login_shiro(User user){
+		Result result=new Result();
+		//Shiro的登陆操作   获取用户对象
+		Subject subject = SecurityUtils.getSubject();
+		
+		//将用户的数据封装为令牌(票)
+		UsernamePasswordToken token = new UsernamePasswordToken(user.getLoginName(), user.getPassword());
+		
+		try {
+			//通过用户实现登陆 
+			subject.login(token); 
+			
+			//获取真实的用户对象
+			User u = (User) subject.getPrincipal();
+			
+			//session.setAttribute("sessionUser", user);
+			subject.getSession().setAttribute("sessionUser", u);
+			//证明用户名和密码正确
+			result.setData(0);
+			result.setMessage("登录成功!");
+			
+		} catch (AuthenticationException e) {
+			e.printStackTrace();  //打印异常信息
+			//证明用户名和密码错误
+			result.setData(1);
+			result.setMessage("登录失败!");
+		}
+		return result;
+	}
+
 	@Resource(name="pageUtil")
 	private PageUtil pageUtil;
 	@Override
