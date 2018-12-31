@@ -21,33 +21,37 @@ import com.tarena.vo.Result;
 public class userServiceimpl implements userService {
 	@Resource(name="userMapper")
      private UserMapper userMapper;
+	@Resource(name="pageUtil")
+	private PageUtil pageUtil;
 	@Override
-	public Result login(String loginName, String password) {
-		Result result =new Result();
-		User user=new User();
-		user.setLoginName(loginName);
-		user.setPassword(password);
-		String userId=userMapper.login(user);
-		if(userId!=null) {
-			result.setStatus(1);
-			result.setMessage("终于登录成功修仙之路正式开启");
-		}
-		
-		else {
-			result.setMessage("离成佛还差一步加油");
-			result.setStatus(0);
-		}
-		return result;
-		
-	}
-	public Result login_shiro(User user){
+//	public Result login(String loginName, String password) {
+//		Result result =new Result();
+//		User user=new User();
+//		user.setLoginName(loginName);
+//		user.setPassword(password);
+//		String userId=userMapper.login(user);
+//		if(userId!=null) {
+//			result.setStatus(1);
+//			result.setMessage("终于登录成功修仙之路正式开启");
+//		}
+//		
+//		else {
+//			result.setMessage("离成佛还差一步加油");
+//			result.setStatus(0);
+//		}
+//		return result;
+//		
+//	}
+	
+//	一段代码，代表shiro的入口
+	public Result login_shiro(String loginName, String password){
 		Result result=new Result();
 		//Shiro的登陆操作   获取用户对象
 		Subject subject = SecurityUtils.getSubject();
 		
-		//将用户的数据封装为令牌(票)
-		UsernamePasswordToken token = new UsernamePasswordToken(user.getLoginName(), user.getPassword());
-		
+		//将用户的数据封装为令牌(票)  shiro提供的包及方法
+		UsernamePasswordToken token = new UsernamePasswordToken(loginName,password);
+		System.out.println("进业务端了");
 		try {
 			//通过用户实现登陆 
 			subject.login(token); 
@@ -56,22 +60,21 @@ public class userServiceimpl implements userService {
 			User u = (User) subject.getPrincipal();
 			
 			//session.setAttribute("sessionUser", user);
-			subject.getSession().setAttribute("sessionUser", u);
+			subject.getSession().setAttribute("loginName", u.getLoginName());
 			//证明用户名和密码正确
-			result.setData(0);
-			result.setMessage("登录成功!");
+			result.setStatus(1);
+			result.setMessage("终于登录成功修仙之路正式开启!");
 			
 		} catch (AuthenticationException e) {
 			e.printStackTrace();  //打印异常信息
 			//证明用户名和密码错误
-			result.setData(1);
-			result.setMessage("登录失败!");
+			result.setStatus(0);
+			result.setMessage("离成佛还差一步加油!");
 		}
 		return result;
 	}
 
-	@Resource(name="pageUtil")
-	private PageUtil pageUtil;
+	
 	@Override
 	public Result finduserByPage(Page page) {
 		Result result=new Result();

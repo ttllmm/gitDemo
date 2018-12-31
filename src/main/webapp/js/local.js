@@ -32,7 +32,7 @@ function load_pwd() {
 
 // 加载左侧导航栏
 function load_nav() {
-	$('#siderbar').load('page/nav.html', function(){
+	$('#siderbar').load('page/nav.jsp', function(){
 		register_nav();
 	});
 }

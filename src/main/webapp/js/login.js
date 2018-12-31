@@ -25,24 +25,34 @@ $(function(){
 //	alert(loginName +"  "+password);
 		
 //		把数据异步发送给客户端
+	
 	$.ajax({
-		url:"user/login/"+loginName+"/"+password,
+		url:"user/login",
 		type:"get",
 		dataType:"json",
+		data:{
+			"loginName":loginName,
+			"password":password
+			
+		},
 		success:function(result){
-//			alert(result.status+"    "+result.message);
+			alert(result.status+"    "+result.message);
 		
 				if(result.status==1){
 					//服务端正确返回
 					//跳转页面
-					window.location.href="index.html"
-		3784723472378	跳到这里			window.location.href="index.jsp"
-						if(remember=="记住密码"){
+					
+//					window.location.href="index.html"
+//		    window.location.href="index.jsp"
+					alert("跳转页面上方")
+			window.location.href="index.jsp";
+						if(remember=="记住账号"){
 							
-							addCookie("loginName",loginName,1);
-						}else if(result.status==0){
-							alert(result.message);
+							addCookie("loginName",loginName,5);
 						}
+				}
+				else if(result.status==0){
+					alert("登录状态为0");
 				}
 				
 		},

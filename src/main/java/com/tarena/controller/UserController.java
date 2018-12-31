@@ -22,14 +22,15 @@ import com.tarena.vo.Result;
 public class UserController {
 	@Resource(name="userService")
 	private userService userService;
-	@RequestMapping(value="login/{name}/{pwd}",method=RequestMethod.GET)
+	@RequestMapping(value="login",method=RequestMethod.GET)
 	@ResponseBody	
-	public Result login(
-			@PathVariable("name") String loginName,
-			@PathVariable("pwd") String password){
+	public Result login( String loginName,String password){
 		System.out.println(loginName+"   "+password);
 		Result result=null;
-		result=this.userService.login(loginName,password);
+		result=this.userService.login_shiro(loginName,password);
+//		Result result=new Result();
+//		result.setMessage("到控制台了");
+//		result.setStatus(1);
 		return result;
 	}
 	

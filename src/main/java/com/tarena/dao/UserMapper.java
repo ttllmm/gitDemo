@@ -17,4 +17,8 @@ public interface UserMapper {
 
 	public User findUserByUserName(String username);
 
+	
+
+	public List<String> findModuleNamesByLoginName(String loginName);
+
 }
