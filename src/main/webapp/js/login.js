@@ -36,7 +36,7 @@ $(function(){
 			
 		},
 		success:function(result){
-			alert(result.status+"    "+result.message);
+//			alert(result.status+"    "+result.message);
 		
 				if(result.status==1){
 					//服务端正确返回
@@ -44,7 +44,7 @@ $(function(){
 					
 //					window.location.href="index.html"
 //		    window.location.href="index.jsp"
-					alert("跳转页面上方")
+//					alert("跳转页面上方")
 			window.location.href="index.jsp";
 						if(remember=="记住账号"){
 							

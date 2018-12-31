@@ -6,6 +6,7 @@ package com.tarena.controller;
 
 import javax.annotation.Resource;
 
+import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,8 +25,10 @@ public class UserController {
 	private userService userService;
 	@RequestMapping(value="login",method=RequestMethod.GET)
 	@ResponseBody	
+	
+//	登录的方法
 	public Result login( String loginName,String password){
-		System.out.println(loginName+"   "+password);
+//		System.out.println(loginName+"   "+password);
 		Result result=null;
 		result=this.userService.login_shiro(loginName,password);
 //		Result result=new Result();
@@ -35,10 +38,13 @@ public class UserController {
 	}
 	
 	
+
+	
+	
 	@RequestMapping(value="finduserByPage",method=RequestMethod.GET)
 	@ResponseBody
 	public Result finduserByPage(Page page) {
-		System.out.println("到控制台了");
+//		System.out.println("到控制台了");
 		
 		Result result=null;
 //		Result result=new Result();
@@ -48,11 +54,6 @@ public class UserController {
 //		result.setMessage("到控制台了");
 //		result.setStatus(1);
 		return result;
-		
-		
-		
-		
-		
 		
 		
 	}

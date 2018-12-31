@@ -51,7 +51,7 @@ public class userServiceimpl implements userService {
 		
 		//将用户的数据封装为令牌(票)  shiro提供的包及方法
 		UsernamePasswordToken token = new UsernamePasswordToken(loginName,password);
-		System.out.println("进业务端了");
+//		System.out.println("进业务端了");
 		try {
 			//通过用户实现登陆 
 			subject.login(token); 
@@ -123,7 +123,7 @@ public class userServiceimpl implements userService {
 		
 		 result.setMessage("进入服务后台了");
 		 result.setStatus(1);
-		System.out.println("进业务了");
+//		System.out.println("进业务了");
 		
 		return result;
 	}
